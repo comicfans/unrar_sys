@@ -1,12 +1,12 @@
-extern crate gcc;
+extern crate cc;
 
 use std::env::set_var;
 
 fn main() {
     set_var("LIBFLAGS", "-fPIC");
     set_var("LDFLAGS", "-pthread");
-    set_var("CXXFLAGS", "-O2");
-    gcc::Config::new()
+    set_var("CXXFLAGS", "-O2  -Wno-logical-op-parentheses -Wno-switch -Wno-dangling-else ");
+    cc::Build::new()
         .cpp(true) // Switch to C++ library compilation.
         .define("_FILE_OFFSET_BITS", Some("64"))
         .define("_LARGEFILE_SOURCE", None)
